@@ -33,8 +33,8 @@ Mengingat banyaknya jumlah ulasan yang tersedia secara online, proses analisis m
    - Menghapus karakter tidak relevan seperti HTML, URL, angka, tanda baca, emoji, dan spasi berlebih.  
    - Menurunkan huruf kapital dan menghapus stopwords menggunakan NLTK.  
    - Mengonversi rating menjadi dua kelas sentimen:  
-     - **Positif**: rating 3, 4, 5  
-     - **Negatif**: rating 1, 2
+     - **Positif**: rating 4, 5  
+     - **Negatif**: rating 1, 2, 3
 
 2. **Modeling dengan BERT**  
    - Menggunakan tokenizer dan model pre-trained BERT untuk klasifikasi biner.  
@@ -61,16 +61,6 @@ Kolom:
 - **Review**: berisi teks ulasan
 - **Rating**: angka 1 sampai 5 yang menunjukkan penilaian pelanggan
 
-Distribusi rating:
-
-| Rating | Jumlah |
-|--------|--------|
-| 1      | 9054   |
-| 2      | 6039   |
-| 3      | 2184   |
-| 4      | 1793   |
-| 5      | 1421   |
-
 ## 4. Data Preparation
 
 Langkah-langkah persiapan data:
@@ -80,11 +70,11 @@ Langkah-langkah persiapan data:
    - Lowercasing dan stopword removal
 
 2. **Label Sentimen**  
-   - Positif (1): rating 3, 4, 5  
-   - Negatif (0): rating 1, 2
+   - Positif (1): rating 4, 5  
+   - Negatif (0): rating 1, 2, 3
 
 3. **Pembagian Data**  
-   - Stratified sampling: 70% data pelatihan, 15% validasi, 15% pengujian
+   - Stratified sampling: 70% data pelatihan dan 30% data testing
 
 4. **Tokenisasi**  
    - Menggunakan tokenizer BERT  
@@ -111,7 +101,7 @@ Langkah-langkah persiapan data:
 | Epoch            | 3         |
 | Optimizer        | AdamW     |
 | Scheduler        | Linear    |
-| Loss Function    | BCE Loss  |
+| Loss Function    | CrossEntropyLoss  |
 
 ### Proses Training
 
@@ -128,30 +118,30 @@ Langkah-langkah persiapan data:
 - Akurasi pelatihan mencapai ~97%
 - Akurasi validasi mencapai ~94%
 
-![Model Accuracy Plot](https://raw.githubusercontent.com/mhmmadgiatt/Dicoding-Machine-Learning-Terapan/main/img/plot_performances.png)
+![Model Accuracy Plot]()
 
 ### Confusion Matrix
 
-![Confusion Matrix](https://raw.githubusercontent.com/mhmmadgiatt/Dicoding-Machine-Learning-Terapan/main/img/confusion_matrix.png)
+![Confusion Matrix]()
 
-- True Positive: 4028  
-- True Negative: 592  
-- False Positive: 179  
-- False Negative: 119
+- True Positive: 4264  
+- True Negative: 1248  
+- False Positive: 264  
+- False Negative: 372
 
 ### Classification Report
 
 | Sentimen | Precision | Recall | F1-Score | Support |
 |----------|-----------|--------|----------|---------|
-| Negatif  | 0.83      | 0.77   | 0.80     | 771     |
-| Positif  | 0.96      | 0.97   | 0.96     | 4747    |
-| **Akurasi** |     |      | **0.94**  | 4918    |
+| Negatif  | 0.83      | 0.77   | 0.80     | 1620     |
+| Positif  | 0.92      | 0.94   | 0.93     | 4528    |
+| **Akurasi** |     |      | **0.90**  | 6148    |
 
 ### Analisis Hasil
 
-- Model menunjukkan performa sangat baik dalam mengklasifikasikan ulasan positif (F1 96%)
+- Model menunjukkan performa sangat baik dalam mengklasifikasikan ulasan positif (F1 93%)
 - Performa pada kelas negatif juga cukup solid dengan F1-score 80%
-- Skor weighted average F1 mencapai 94%, menunjukkan model sangat andal pada data uji
+- Skor weighted average F1 mencapai 90%, menunjukkan model sangat andal pada data uji
 
 ## 7. Kesimpulan
 
