@@ -115,14 +115,11 @@ Langkah-langkah persiapan data:
 
 ### Hasil Akurasi
 
-- Akurasi pelatihan mencapai ~97%
-- Akurasi validasi mencapai ~94%
+- Akurasi pelatihan mencapai ~94%
+- Akurasi validasi mencapai ~89%
 
-![Model Accuracy Plot]()
 
 ### Confusion Matrix
-
-![Confusion Matrix]()
 
 - True Positive: 4264  
 - True Negative: 1248  
