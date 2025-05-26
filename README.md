@@ -1,83 +1,158 @@
+# Laporan Proyek Analisis Sentimen dengan BERT – TripAdvisor Hotel Reviews
 
-# Laporan Proyek Machine Learning - Ulfa Stevi Juliana
+## 1. Domain Proyek
 
-## Domain Proyek
+### Latar Belakang
 
-**Analisis sentimen** telah menjadi salah satu topik utama dalam Natural Language Processing (NLP) dan data science secara umum, terutama dalam memahami opini pelanggan terhadap produk atau layanan. Dalam konteks ini, ulasan pelanggan di situs perjalanan seperti **Trip Advisor** menjadi sumber data yang sangat berharga untuk mengidentifikasi kepuasan pelanggan terhadap layanan hotel.
+Industri perhotelan sangat bergantung pada kepuasan pelanggan. Seiring perkembangan teknologi dan kemudahan akses informasi, calon tamu hotel kini semakin mengandalkan ulasan dari pengguna sebelumnya untuk menentukan pilihan mereka. Ulasan-ulasan ini tidak hanya memuat opini, kritik, dan pengalaman pribadi, namun juga mencerminkan sentimen yang bisa dikategorikan sebagai positif atau negatif.
 
-Masalah ini penting untuk diselesaikan karena:
-- Memberikan wawasan bisnis yang berguna bagi manajemen hotel untuk meningkatkan layanan mereka.
-- Membantu calon pelanggan membuat keputusan berdasarkan ulasan.
-- Mendorong pemanfaatan data tidak terstruktur (teks) dalam sistem pendukung keputusan.
+Mengingat banyaknya jumlah ulasan yang tersedia secara online, proses analisis manual sangat tidak efisien. Oleh karena itu, dibutuhkan pendekatan otomatis berbasis Machine Learning untuk memahami dan mengklasifikasikan sentimen pelanggan. Dalam proyek ini, saya mengembangkan model analisis sentimen menggunakan pendekatan Deep Learning berbasis transformer, yaitu BERT (Bidirectional Encoder Representations from Transformers). Dataset yang digunakan berasal dari TripAdvisor, berisi 20.491 ulasan dan rating hotel.
 
-### Referensi:
-- M. Liu, “Sentiment Analysis and Opinion Mining,” Synthesis Lectures on Human Language Technologies, vol. 5, no. 1, pp. 1–167, 2012. [Online]. Available: https://www.morganclaypool.com/doi/abs/10.2200/S00416ED1V01Y201204HLT016
+## 2. Business Understanding
 
-## Business Understanding
+### Permasalahan Bisnis
 
-### Problem Statements
-1. Bagaimana mengklasifikasikan ulasan pengguna ke dalam kategori sentimen positif dan negatif secara otomatis?
-2. Algoritma mana yang paling efektif untuk analisis sentimen terhadap ulasan Trip Advisor?
+- Bagaimana cara mengevaluasi sentimen pelanggan secara cepat dari ribuan ulasan?
+- Bagaimana mengubah data teks ulasan menjadi wawasan strategis bagi pihak manajemen hotel?
 
-### Goals
-1. Membangun model machine learning untuk mengklasifikasikan ulasan hotel berdasarkan sentimen.
-2. Mengevaluasi dan membandingkan performa beberapa algoritma untuk menemukan model terbaik.
+### Tujuan
 
-### Solution Statements
-- Menggunakan dua algoritma: **Logistic Regression** dan **Multinomial Naive Bayes** sebagai baseline.
-- Melakukan tuning parameter dan menggunakan teknik **TF-IDF vectorization** untuk meningkatkan performa model.
-- Mengukur performa dengan metrik **accuracy, precision, recall, dan F1-score**.
+- Membangun sistem otomatis yang dapat mengklasifikasikan ulasan pelanggan menjadi sentimen positif atau negatif.
+- Memberikan insight strategis untuk perbaikan layanan dan pengambilan keputusan yang berbasis data.
 
-## Data Understanding
+### Manfaat
 
-Dataset yang digunakan adalah **Trip Advisor Hotel Reviews** yang memuat ulasan pengguna dan label sentimen (0 = negatif, 1 = positif). Sumber data berasal dari Kaggle: [Trip Advisor Hotel Reviews](https://www.kaggle.com/datasets/andrewmvd/trip-advisor-hotel-reviews).
+- **Efisiensi analisis ulasan** dalam jumlah besar.
+- **Identifikasi area perbaikan layanan** berdasarkan opini pelanggan.
+- **Penguatan strategi pemasaran** dengan memahami persepsi pelanggan.
+- **Keunggulan kompetitif**, melalui pemahaman mendalam terhadap kepuasan tamu hotel.
 
-### Variabel dalam dataset:
-- **Review**: Teks ulasan hotel dari pengguna.
-- **Rating**: Skor atau label sentimen (0 atau 1).
+### Solusi yang Diterapkan
 
-EDA yang dilakukan termasuk:
-- Menampilkan distribusi label.
-- Visualisasi kata paling sering muncul menggunakan WordCloud.
-- Analisis panjang teks.
+1. **Preprocessing Data**  
+   - Menghapus karakter tidak relevan seperti HTML, URL, angka, tanda baca, emoji, dan spasi berlebih.  
+   - Menurunkan huruf kapital dan menghapus stopwords menggunakan NLTK.  
+   - Mengonversi rating menjadi dua kelas sentimen:  
+     - **Positif**: rating 3, 4, 5  
+     - **Negatif**: rating 1, 2
 
-## Data Preparation
+2. **Modeling dengan BERT**  
+   - Menggunakan tokenizer dan model pre-trained BERT untuk klasifikasi biner.  
+   - Tokenisasi dengan padding dan truncation untuk panjang maksimum 128 token.  
+   - Pembagian data ke dalam set pelatihan, validasi, dan pengujian.
 
-Tahapan yang dilakukan:
-- **Lowercasing**: Mengubah semua huruf menjadi kecil.
-- **Cleaning**: Menghapus karakter non-alfabet, angka, dan tanda baca dengan regex.
-- **Tokenisasi dan lemmatization** menggunakan spaCy.
-- **Vectorization**: Mengubah teks menjadi representasi numerik dengan TF-IDF dan CountVectorizer.
+3. **Training**  
+   - Model dilatih menggunakan PyTorch dan optimizer AdamW.  
+   - Hyperparameter: learning rate 5e-5, batch size 16, dan epoch sebanyak 3.
 
-Alasan data preparation:
-- Mengurangi noise pada data teks.
-- Meningkatkan kualitas fitur sebelum dimasukkan ke model machine learning.
+4. **Evaluasi**  
+   - Evaluasi dilakukan dengan akurasi, precision, recall, dan F1-score.  
+   - Model diuji pada dataset terpisah untuk mengukur generalisasi.
 
-## Modeling
+## 3. Data Understanding
 
-Model yang digunakan:
-1. **Multinomial Naive Bayes**
-   - Cocok untuk data teks yang bersifat multinomial seperti word count/TF-IDF.
-2. **Logistic Regression**
-   - Sering digunakan untuk klasifikasi biner.
+### Informasi Dataset
 
-Kedua model dilatih pada data TF-IDF hasil preprocessing. Tidak dilakukan hyperparameter tuning secara eksplisit.
+- Sumber: [Kaggle - TripAdvisor Hotel Reviews](https://www.kaggle.com/datasets/andrewmvd/trip-advisor-hotel-reviews)  
+- Format: CSV  
+- Jumlah data: 20.491 baris dan 2 kolom (Review, Rating)
 
-### Kelebihan dan kekurangan:
-- **Naive Bayes**: Cepat dan efektif untuk teks, tapi mengasumsikan independensi fitur.
-- **Logistic Regression**: Lebih fleksibel, namun bisa lebih lambat dan sensitif terhadap fitur korup.
+Kolom:
+- **Review**: berisi teks ulasan
+- **Rating**: angka 1 sampai 5 yang menunjukkan penilaian pelanggan
 
-## Evaluation
+Distribusi rating:
 
-Metrik yang digunakan:
-- **Accuracy**: Proporsi prediksi benar terhadap total data.
-- **Precision**: Proporsi prediksi positif yang benar.
-- **Recall**: Proporsi kasus positif yang berhasil teridentifikasi.
-- **F1-score**: Harmonik rata-rata precision dan recall.
+| Rating | Jumlah |
+|--------|--------|
+| 1      | 9054   |
+| 2      | 6039   |
+| 3      | 2184   |
+| 4      | 1793   |
+| 5      | 1421   |
 
-### Hasil evaluasi:
-- **Naive Bayes Accuracy**: ~89%
-- **Logistic Regression Accuracy**: ~90%
-- Model terbaik: **Logistic Regression**, karena memiliki akurasi dan F1-score sedikit lebih tinggi.
+## 4. Data Preparation
 
----
+Langkah-langkah persiapan data:
+
+1. **Pembersihan Teks**  
+   - Menghapus HTML, URL, angka, tanda baca, emoji  
+   - Lowercasing dan stopword removal
+
+2. **Label Sentimen**  
+   - Positif (1): rating 3, 4, 5  
+   - Negatif (0): rating 1, 2
+
+3. **Pembagian Data**  
+   - Stratified sampling: 70% data pelatihan, 15% validasi, 15% pengujian
+
+4. **Tokenisasi**  
+   - Menggunakan tokenizer BERT  
+   - Padding dan truncation ke 128 token
+
+5. **Konversi ke Tensor Dataset**  
+   - Dataset diubah menjadi objek tensor PyTorch agar dapat digunakan dalam proses pelatihan model.
+
+## 5. Modeling
+
+### Arsitektur Model
+
+- Menggunakan model `bert-base-uncased` dari HuggingFace
+- Klasifikasi biner menggunakan linear layer pada akhir BERT
+- Tokenisasi dilakukan dengan `BertTokenizer`
+- Parameter awal model BERT dipertahankan (fine-tuning dilakukan secara parsial)
+
+### Hyperparameter dan Konfigurasi
+
+| Parameter        | Nilai     |
+|------------------|-----------|
+| Learning Rate    | 5e-5      |
+| Batch Size       | 16        |
+| Epoch            | 3         |
+| Optimizer        | AdamW     |
+| Scheduler        | Linear    |
+| Loss Function    | BCE Loss  |
+
+### Proses Training
+
+- Input: input_ids dan attention_mask
+- Loss: Binary Cross Entropy
+- Optimizer: AdamW
+- Performa divalidasi setiap epoch
+- Checkpoint model disimpan jika validasi meningkat
+
+## 6. Evaluasi
+
+### Hasil Akurasi
+
+- Akurasi pelatihan mencapai ~97%
+- Akurasi validasi mencapai ~94%
+
+![Model Accuracy Plot](https://raw.githubusercontent.com/mhmmadgiatt/Dicoding-Machine-Learning-Terapan/main/img/plot_performances.png)
+
+### Confusion Matrix
+
+![Confusion Matrix](https://raw.githubusercontent.com/mhmmadgiatt/Dicoding-Machine-Learning-Terapan/main/img/confusion_matrix.png)
+
+- True Positive: 4028  
+- True Negative: 592  
+- False Positive: 179  
+- False Negative: 119
+
+### Classification Report
+
+| Sentimen | Precision | Recall | F1-Score | Support |
+|----------|-----------|--------|----------|---------|
+| Negatif  | 0.83      | 0.77   | 0.80     | 771     |
+| Positif  | 0.96      | 0.97   | 0.96     | 4747    |
+| **Akurasi** |     |      | **0.94**  | 4918    |
+
+### Analisis Hasil
+
+- Model menunjukkan performa sangat baik dalam mengklasifikasikan ulasan positif (F1 96%)
+- Performa pada kelas negatif juga cukup solid dengan F1-score 80%
+- Skor weighted average F1 mencapai 94%, menunjukkan model sangat andal pada data uji
+
+## 7. Kesimpulan
+
+Model BERT yang dikembangkan berhasil melakukan klasifikasi sentimen ulasan hotel dengan akurasi tinggi. Evaluasi menunjukkan bahwa model sangat andal dalam mendeteksi sentimen positif dan cukup baik dalam menangkap sentimen negatif. Sistem ini dapat diandalkan untuk membantu hotel memahami umpan balik pelanggan dan meningkatkan kualitas layanan berdasarkan data.
