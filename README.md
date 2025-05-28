@@ -123,11 +123,30 @@ Langkah-langkah persiapan data:
 
 ### Arsitektur Model
 
-- Menggunakan model `bert-base-uncased` dari HuggingFace
-- Klasifikasi biner menggunakan linear layer pada akhir BERT
-- Tokenisasi dilakukan dengan `BertTokenizer`
-- Parameter awal model BERT dipertahankan (fine-tuning dilakukan secara parsial)
+- Menggunakan model bert-base-uncased dari HuggingFace Transformers.
+- Model BertForSequenceClassification digunakan untuk klasifikasi biner.
+- Tokenisasi dilakukan menggunakan BertTokenizer.
+- Seluruh parameter BERT difine-tune selama pelatihan.
+- Layer klasifikasi linear (dengan softmax) ditambahkan di atas representasi BERT.
 
+### Penjelasan Cara Kerja BERT
+BERT (Bidirectional Encoder Representations from Transformers) adalah model pra-latih berbasis arsitektur Transformer, yang dirancang untuk memahami konteks kata dalam kalimat secara bidirectional.
+
+#### Arsitektur Transformer
+
+BERT terdiri dari beberapa lapisan encoder dari Transformer, yang menggunakan mekanisme self-attention untuk memproses kata-kata dalam sebuah urutan. Tidak seperti model sekuensial tradisional (misalnya RNN), Transformer memungkinkan pemrosesan paralel dan menangkap dependensi kata yang jauh dalam teks.
+
+#### Mekanisme Self-Attention
+
+Dalam setiap layer encoder, BERT menghitung attention score antar kata dalam kalimat. Mekanisme self-attention ini memungkinkan model untuk menimbang pentingnya setiap kata terhadap kata lainnya, sehingga dapat memahami makna kontekstual secara lebih mendalam.
+
+#### Pemrosesan Bidirectional
+
+BERT memproses input secara bidirectional, artinya ia melihat konteks di kiri dan kanan suatu kata secara bersamaan saat melakukan pretraining. Ini berbeda dari model unidirectional seperti GPT, yang hanya melihat satu arah konteks (misalnya, dari kiri ke kanan). Sifat ini memungkinkan BERT menangkap makna kata yang lebih akurat dalam konteksnya.
+
+#### Pretraining dan Fine-tuning
+
+BERT dilatih terlebih dahulu (pretraining) menggunakan dua tugas: Masked Language Modeling (MLM) dan Next Sentence Prediction (NSP). Setelah pretraining, BERT dapat disesuaikan (fine-tuned) untuk tugas spesifik seperti klasifikasi sentimen, hanya dengan menambahkan layer klasifikasi di atasnya dan melatih ulang pada data spesifik.
 ### Hyperparameter dan Konfigurasi
 
 | Parameter        | Nilai     |
@@ -136,8 +155,8 @@ Langkah-langkah persiapan data:
 | Batch Size       | 16        |
 | Epoch            | 3         |
 | Optimizer        | AdamW     |
-| Scheduler        | Linear    |
 | Loss Function    | CrossEntropyLoss  |
+*Catatan: Meski tugas ini adalah klasifikasi biner, CrossEntropyLoss tetap digunakan karena arsitektur BertForSequenceClassification mengasumsikan kelas >1 dan output logits, bukan probabilitas.
 
 ### Proses Training
 
@@ -146,6 +165,8 @@ Langkah-langkah persiapan data:
 - Optimizer: AdamW
 - Performa divalidasi setiap epoch
 - Checkpoint model disimpan jika validasi meningkat
+
+
 
 ## 6. Evaluasi
 
