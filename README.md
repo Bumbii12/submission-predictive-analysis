@@ -180,7 +180,7 @@ BERT dilatih terlebih dahulu (pretraining) menggunakan dua tugas: Masked Languag
 
 ### Confusion Matrix
 
-![Confusion Matrix]()
+![Confusion Matrix](https://github.com/Bumbii12/submission-predictive-analysis/blob/main/images/confusion_matrix.png)
 
 - True Positive: 4264  
 - True Negative: 1248  
