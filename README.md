@@ -4,9 +4,9 @@
 
 ### Latar Belakang
 
-Industri perhotelan sangat bergantung pada kepuasan pelanggan. Seiring perkembangan teknologi dan kemudahan akses informasi, calon tamu hotel kini semakin mengandalkan ulasan dari pengguna sebelumnya untuk menentukan pilihan mereka. Ulasan-ulasan ini tidak hanya memuat opini, kritik, dan pengalaman pribadi, namun juga mencerminkan sentimen yang bisa dikategorikan sebagai positif atau negatif.
+Industri perhotelan sangat bergantung pada kepuasan pelanggan. Seiring perkembangan teknologi dan kemudahan akses informasi, calon tamu hotel kini semakin mengandalkan ulasan dari pengguna sebelumnya untuk menentukan pilihan mereka. Ulasan-ulasan ini tidak hanya memuat opini, kritik, dan pengalaman pribadi, namun juga mencerminkan sentimen yang bisa dikategorikan sebagai positif atau negatif (Ye, Law, & Gu, 2009).
 
-Mengingat banyaknya jumlah ulasan yang tersedia secara online, proses analisis manual sangat tidak efisien. Oleh karena itu, dibutuhkan pendekatan otomatis berbasis Machine Learning untuk memahami dan mengklasifikasikan sentimen pelanggan. Dalam proyek ini, saya mengembangkan model analisis sentimen menggunakan pendekatan Deep Learning berbasis transformer, yaitu BERT (Bidirectional Encoder Representations from Transformers). Dataset yang digunakan berasal dari TripAdvisor, berisi 20.491 ulasan dan rating hotel.
+Mengingat banyaknya jumlah ulasan yang tersedia secara online, proses analisis manual sangat tidak efisien. Oleh karena itu, dibutuhkan pendekatan otomatis berbasis Machine Learning untuk memahami dan mengklasifikasikan sentimen pelanggan (Medhat, Hassan, & Korashy, 2014). Dalam proyek ini, saya mengembangkan model analisis sentimen menggunakan pendekatan Deep Learning berbasis transformer, yaitu BERT (Bidirectional Encoder Representations from Transformers) yang terbukti efektif dalam memahami konteks bahasa alami (Devlin et al., 2019). Dataset yang digunakan berasal dari TripAdvisor, berisi 20.491 ulasan dan rating hotel.
 
 ## 2. Business Understanding
 
@@ -85,7 +85,7 @@ Kolom:
 
   - Tampilan Dataset
 
-Tabel 2. Tampilan dataset awal dalam bentuk _DataFrame pandas_.  
+Tampilan dataset awal dalam bentuk _DataFrame pandas_.  
 
 |   | Review                                               | Rating   |
 | - | ---------------------------------------------------- | ---------|
@@ -204,3 +204,9 @@ BERT dilatih terlebih dahulu (pretraining) menggunakan dua tugas: Masked Languag
 ## 7. Kesimpulan
 
 Model BERT yang dikembangkan berhasil melakukan klasifikasi sentimen ulasan hotel dengan akurasi tinggi. Evaluasi menunjukkan bahwa model sangat andal dalam mendeteksi sentimen positif dan cukup baik dalam menangkap sentimen negatif. Sistem ini dapat diandalkan untuk membantu hotel memahami umpan balik pelanggan dan meningkatkan kualitas layanan berdasarkan data.
+
+
+Referensi:  
+  [Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805](https://arxiv.org/abs/1810.04805)
+  [Medhat, W., Hassan, A., & Korashy, H. (2014). Sentiment analysis algorithms and applications: A survey. Ain Shams Engineering Journal, 5(4), 1093–1113.](https://doi.org/10.1016/j.asej.2014.04.011)
+  [Ye, Q., Law, R., & Gu, B. (2009). The impact of online user reviews on hotel room sales. International Journal of Hospitality Management, 28(1), 180–182.](https://doi.org/10.1016/j.ijhm.2008.06.011)
