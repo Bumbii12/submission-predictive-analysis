@@ -30,11 +30,12 @@ Mengingat banyaknya jumlah ulasan yang tersedia secara online, proses analisis m
 ### Solusi yang Diterapkan
 
 1. **Preprocessing Data**  
-   - Menghapus karakter tidak relevan seperti HTML, URL, angka, tanda baca, emoji, dan spasi berlebih.  
-   - Menurunkan huruf kapital dan menghapus stopwords menggunakan NLTK.  
    - Mengonversi rating menjadi dua kelas sentimen:  
      - **Positif**: rating 4, 5  
      - **Negatif**: rating 1, 2, 3
+   - Menghapus karakter tidak relevan seperti HTML, URL, angka, tanda baca, emoji, dan spasi berlebih.  
+   - Menurunkan huruf kapital dan menghapus stopwords menggunakan NLTK.  
+   
 
 2. **Modeling dengan BERT**  
    - Menggunakan tokenizer dan model pre-trained BERT untuk klasifikasi biner.  
