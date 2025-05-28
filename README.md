@@ -101,13 +101,13 @@ Tabel 2. Tampilan dataset awal dalam bentuk _DataFrame pandas_.
 
 Langkah-langkah persiapan data:
 
-1. **Pembersihan Teks**  
-   - Menghapus HTML, URL, angka, tanda baca, emoji  
-   - Lowercasing dan stopword removal
-
-2. **Label Sentimen**  
+1. **Label Sentimen**  
    - Positif (1): rating 4, 5  
    - Negatif (0): rating 1, 2, 3
+
+2. **Pembersihan Teks**  
+   - Menghapus HTML, URL, angka, tanda baca, emoji  
+   - Lowercasing dan stopword removal
 
 3. **Pembagian Data**  
    - Stratified sampling: 70% data pelatihan dan 30% data testing
