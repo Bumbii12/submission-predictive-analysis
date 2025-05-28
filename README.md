@@ -173,7 +173,7 @@ BERT dilatih terlebih dahulu (pretraining) menggunakan dua tugas: Masked Languag
 ## 6. Evaluasi
 
 ### Hasil Akurasi
-
+![Akurasi](https://github.com/Bumbii12/submission-predictive-analysis/blob/main/images/confusion_matrix.png)
 - Akurasi pelatihan mencapai ~94%
 - Akurasi validasi mencapai ~89%
 
