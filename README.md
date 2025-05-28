@@ -61,6 +61,42 @@ Kolom:
 - **Review**: berisi teks ulasan
 - **Rating**: angka 1 sampai 5 yang menunjukkan penilaian pelanggan
 
+## Analisis Kuantitatif Dataset
+1. Jumlah Data
+- Total Baris: 20491 Baris
+- Total Kolom: 2 (Review dan Rating)
+
+2. Statistik Deskriptif Kolom
+- Kolom Review
+  - Tipe Data: String
+  - Deskripsi: Kalimat/sentimen/pendapat/kritik yang ditulis oleh individu
+
+- Kolom Rating
+  - Tipe Data: Integer
+  - Rentang Nilai: 1-5
+  - Deskripsi: Perasaan yang dirasakan oleh individu yang digambarkan dengan skala angka
+
+3. Kondisi Data
+- Pemeriksaan Kualitas Data
+  - Missing Values: 0
+  - Distribusi Rating
+
+![distribusi data](https://raw.githubusercontent.com/mhmmadgiatt/Dicoding-Machine-Learning-Terapan/main/img/distribusi_data.png)
+
+  - Tampilan Dataset
+
+Tabel 2. Tampilan dataset awal dalam bentuk _DataFrame pandas_.  
+
+|   | Review                                               | Rating   |
+| - | ---------------------------------------------------- | ---------|
+| 0 | nice hotel expensive parking got good deal sta...    | 4        |  
+| 1 | ok nothing special charge diamond member hilto...    | 2        |  
+| 2 | nice rooms experience hotel monaco seattle goo...    | 3        |    
+| 3 | unique great stay wonderful time hotel monaco ...    | 5        | 
+| 4 | great stay great stay went seahawk game awesom...    | 5        |
+
+***
+
 ## 4. Data Preparation
 
 Langkah-langkah persiapan data:
