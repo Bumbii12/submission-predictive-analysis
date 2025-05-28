@@ -81,7 +81,7 @@ Kolom:
   - Missing Values: 0
   - Distribusi Rating
 
-![distribusi data](https://raw.githubusercontent.com/mhmmadgiatt/Dicoding-Machine-Learning-Terapan/main/img/distribusi_data.png)
+![distribusi data](https://github.com/Bumbii12/submission-predictive-analysis/blob/main/images/distribusi_data.png)
 
   - Tampilan Dataset
 
