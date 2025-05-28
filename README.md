@@ -33,8 +33,8 @@ Mengingat banyaknya jumlah ulasan yang tersedia secara online, proses analisis m
    - Mengonversi rating menjadi dua kelas sentimen:  
      - **Positif**: rating 4, 5  
      - **Negatif**: rating 1, 2, 3
-   - Menghapus karakter tidak relevan seperti HTML, URL, angka, tanda baca, emoji, dan spasi berlebih.  
-   - Menurunkan huruf kapital dan menghapus stopwords menggunakan NLTK.  
+   - Menghapus karakter tidak relevan seperti HTML, URL, angka, tanda baca, emoji, dan spasi berlebih
+   - Lowercasing dan penghapusan stopwords menggunakan NLTK
    
 
 2. **Modeling dengan BERT**  
