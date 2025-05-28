@@ -180,10 +180,12 @@ BERT dilatih terlebih dahulu (pretraining) menggunakan dua tugas: Masked Languag
 
 ### Confusion Matrix
 
+![Confusion Matrix]()
+
 - True Positive: 4264  
 - True Negative: 1248  
-- False Positive: 264  
-- False Negative: 372
+- False Positive: 372 
+- False Negative: 264
 
 ### Classification Report
 
