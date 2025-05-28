@@ -156,7 +156,9 @@ BERT dilatih terlebih dahulu (pretraining) menggunakan dua tugas: Masked Languag
 | Epoch            | 3         |
 | Optimizer        | AdamW     |
 | Loss Function    | CrossEntropyLoss  |
-*Catatan: Meski tugas ini adalah klasifikasi biner, CrossEntropyLoss tetap digunakan karena arsitektur BertForSequenceClassification mengasumsikan kelas >1 dan output logits, bukan probabilitas.
+
+
+> Catatan: Meski tugas ini adalah klasifikasi biner, CrossEntropyLoss tetap digunakan karena arsitektur BertForSequenceClassification mengasumsikan kelas >1 dan output logits, bukan probabilitas.
 
 ### Proses Training
 
